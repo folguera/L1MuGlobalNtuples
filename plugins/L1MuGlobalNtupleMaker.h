@@ -58,6 +58,7 @@ private:
   std::vector<float> _genmu_pt;
   std::vector<float> _genmu_eta;
   std::vector<float> _genmu_phi;
+  std::vector<float> _genmu_dxy;
   short int _genmu_Nmuons;
 
   //L1 muon
