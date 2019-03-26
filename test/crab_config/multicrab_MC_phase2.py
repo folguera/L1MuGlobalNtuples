@@ -10,14 +10,16 @@ config.JobType.psetName = 'run_L1MuNtuple.py'
 config.JobType.pluginName = 'Analysis'
 config.JobType.outputFiles = ['L1MuPhase2Ntuple_output.root']
 config.JobType.pyCfgParams = ['doPhase2Emul=True']
+config.JobType.allowUndistributedCMSSW = True
 
 config.section_('Data')
 config.Data.splitting = 'FileBased'
-config.Data.outLFNDirBase = '/store/user/pellicci/'
+config.JobType.maxMemoryMB = 2500
+config.Data.outLFNDirBase = '/store/user/folguera/GlobalMuNtuples/'
 config.Data.publication = False
 
 config.section_('Site')
-config.Site.storageSite = 'T2_IT_Legnaro'
+config.Site.storageSite = 'T2_CH_CERN'
 
 if __name__ == '__main__':
 
@@ -45,12 +47,20 @@ if __name__ == '__main__':
     p.start()
     p.join()
 
-    config.General.requestName = 'L1MuPhase2Ntuples_SingleMuPt2to100_PU140'
+    config.General.requestName = 'L1MuPhase2Ntuples_SingleNu_PU140'
     config.Data.unitsPerJob = 3
-    config.Data.inputDataset = '/SingleMu_FlatPt-2to100/PhaseIIFall17D-L1TPU140_93X_upgrade2023_realistic_v5-v1/GEN-SIM-DIGI-RAW'
+    config.Data.inputDataset = '/SingleNeutrino/PhaseIIFall17D-L1TPU140_93X_upgrade2023_realistic_v5-v1/GEN-SIM-DIGI-RAW'
     p = Process(target=submit, args=(config,))
     p.start()
     p.join()
+
+    config.General.requestName = 'L1MuPhase2Ntuples_SingleNu_NoPU'
+    config.Data.unitsPerJob = 3
+    config.Data.inputDataset = '/SingleNeutrino/PhaseIIFall17D-L1TnoPU_93X_upgrade2023_realistic_v5-v1/GEN-SIM-DIGI-RAW'
+    p = Process(target=submit, args=(config,))
+    p.start()
+    p.join()
+
 
     config.General.requestName = 'L1MuPhase2Ntuples_SingleMuPt2to100_PU200'
     config.Data.unitsPerJob = 3
@@ -58,3 +68,47 @@ if __name__ == '__main__':
     p = Process(target=submit, args=(config,))
     p.start()
     p.join()
+
+    config.General.requestName = 'L1MuPhase2Ntuples_SingleMuPt2to100_PU140'
+    config.Data.unitsPerJob = 3
+    config.Data.inputDataset = '/SingleMu_FlatPt-2to100/PhaseIIFall17D-L1TPU140_93X_upgrade2023_realistic_v5-v1/GEN-SIM-DIGI-RAW'
+    p = Process(target=submit, args=(config,))
+    p.start()
+    p.join()
+
+    config.General.requestName = 'L1MuPhase2Ntuples_SingleMuPt2to100_noPU'
+    config.Data.unitsPerJob = 3
+    config.Data.inputDataset = '/SingleMu_FlatPt-2to100/PhaseIIFall17D-L1TnoPU_93X_upgrade2023_realistic_v5-v1/GEN-SIM-DIGI-RAW'
+    p = Process(target=submit, args=(config,))
+    p.start()
+    p.join()
+
+
+    config.General.requestName = 'L1MuPhase2Ntuples_DisplacedMuonGun_Pt30To100_Dxy_0_100'
+    config.Data.unitsPerJob = 3
+    config.Data.inputDataset = '/RelValDisplacedMuonGun_Pt30To100_Dxy_0_100/CMSSW_9_3_7-PU25ns_93X_upgrade2023_realistic_v5_2023D17PU200-v1/GEN-SIM-DIGI-RAW'
+    p = Process(target=submit, args=(config,))
+    p.start()
+    p.join()
+
+    config.General.requestName = 'L1MuPhase2Ntuples_DisplacedMuonGun_Pt2To10_Dxy_0_100'
+    config.Data.unitsPerJob = 3
+    config.Data.inputDataset = '/RelValDisplacedMuonGun_Pt2To10_Dxy_0_100/CMSSW_9_3_7-PU25ns_93X_upgrade2023_realistic_v5_2023D17PU200-v1/GEN-SIM-DIGI-RAW'
+    p = Process(target=submit, args=(config,))
+    p.start()
+    p.join()
+
+    config.General.requestName = 'L1MuPhase2Ntuples_DisplacedMuonGun_Pt10To30_Dxy_0_100'
+    config.Data.unitsPerJob = 3
+    config.Data.inputDataset = '/RelValDisplacedMuonGun_Pt10To30_Dxy_0_100/CMSSW_9_3_7-PU25ns_93X_upgrade2023_realistic_v5_2023D17PU200-v1/GEN-SIM-DIGI-RAW'
+    p = Process(target=submit, args=(config,))
+    p.start()
+    p.join()
+
+
+
+
+
+
+
+
