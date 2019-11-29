@@ -107,7 +107,10 @@ process.source = cms.Source("PoolSource",
 #Import the ntuplizer
 process.load("L1Trigger.L1MuGlobalNtuples.L1MuGlobalNtupleMaker_cfi")
 
-# we don't have emtfDigis yet, use unpacked input payloads of GMT
+# load patterns file
+process.simOmtfDigis.patternsXMLFile = cms.FileInPath("L1Trigger/L1TMuon/data/omtf_config/Patterns_0x0005_1.xml")
+
+# We don't have emtfDigis yet, use unpacked input payloads of GMT
 #process.L1MuGlobalNtupleMaker.emtfMuon = cms.InputTag("gmtStage2Digis","EMTF") 
 
 process.ntuplizer = cms.Path(process.L1MuGlobalNtupleMaker)

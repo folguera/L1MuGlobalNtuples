@@ -105,6 +105,7 @@ void L1MuGlobalNtupleMaker::create_trees()
   _mytree->Branch("genmu_pt",&_genmu_pt);
   _mytree->Branch("genmu_eta",&_genmu_eta);
   _mytree->Branch("genmu_phi",&_genmu_phi);
+  _mytree->Branch("genmu_dxy",&_genmu_dxy);
 
   _mytree->Branch("genmu_Nmuons",&_genmu_Nmuons);
 
@@ -150,7 +151,6 @@ void L1MuGlobalNtupleMaker::create_trees()
   _mytree->Branch("omtfmu_processor",&_omtfmu_processor);
   _mytree->Branch("omtfmu_bx",&_omtfmu_bx);
   _mytree->Branch("omtfmu_wheel",&_omtfmu_wheel);
-
   _mytree->Branch("omtfmu_Nmuons",&_omtfmu_Nmuons);
 
   //EMTF muons
@@ -376,7 +376,8 @@ void L1MuGlobalNtupleMaker::SetGenMuons(const edm::Handle<reco::GenParticleColle
   _genmu_pt.clear();
   _genmu_eta.clear();
   _genmu_phi.clear();
-
+  _genmu_dxy.clear();
+  
   _genmu_Nmuons = 0;
 
   for(size_t i = 0; i < genParticles->size() && _genmu_Nmuons < maxGenMu ; ++ i) {
@@ -387,6 +388,8 @@ void L1MuGlobalNtupleMaker::SetGenMuons(const edm::Handle<reco::GenParticleColle
     _genmu_pt.push_back(p.pt());
     _genmu_eta.push_back(p.eta());
     _genmu_phi.push_back(p.phi());
+    float dxy = (-1*p.vx() * p.py() + p.vy() * p.px()) / p.pt();
+    _genmu_dxy.push_back(dxy);
 
     _genmu_Nmuons++;
   }
