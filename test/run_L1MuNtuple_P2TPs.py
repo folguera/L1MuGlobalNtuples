@@ -129,9 +129,10 @@ process.dtTriggerPhase2PrimitiveDigis.scenario = 0 # 0 for mc, 1 for data, 2 for
 
 # Load  patterns file
 #process.simOmtfDigis.patternsXMLFile = cms.FileInPath("L1Trigger/L1TMuon/data/omtf_config/Patterns_0x0005_1.xml")
-#process.simBayesOmtfDigis.srcDTPh = cms.InputTag('dtTriggerPhase2PrimitiveDigis')
-#process.simBayesOmtfDigis.srcDTTh = cms.InputTag('simDtTriggerPrimitiveDigis')
-#process.simBayesOmtfDigis.srcRPC  = cms.InputTag('simMuonRPCDigis')
+process.simBayesOmtfDigis.srcDTPh = cms.InputTag('dtTriggerPhase2PrimitiveDigis')
+process.simBayesOmtfDigis.srcDTTh = cms.InputTag('simDtTriggerPrimitiveDigis')
+process.simBayesOmtfDigis.srcRPC  = cms.InputTag('simMuonRPCDigis')
+process.simBayesMuCorrelatorTrackProducer.srcDTPh = cms.InputTag('dtTriggerPhase2PrimitiveDigis')
 
 # We don't have emtfDigis yet, use unpacked input payloads of GMT
 #process.L1MuGlobalNtupleMaker.emtfMuon = cms.InputTag("gmtStage2Digis","EMTF") 
@@ -140,7 +141,7 @@ process.ntuplizer = cms.Path(process.L1MuGlobalNtupleMaker)
 
 # Output file
 process.TFileService = cms.Service("TFileService",
-                                   fileName = cms.string("L1MuPhase2Ntuple_Phase1.root")
+                                   fileName = cms.string("L1MuPhase2Ntuple_P2TP.root")
                                    )
 
 
